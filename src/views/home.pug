@@ -1,0 +1,13 @@
+extends base.pug
+include mixins/video
+
+block content
+    div.video-grid
+        each potato in videos
+            +video(potato)
+        else
+            span.empty__message No videos found
+        //- a(href="/videos/upload") Upload Video
+
+block scripts
+    script(src="/static/js/main.js")

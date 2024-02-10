@@ -1,0 +1,17 @@
+extends base
+
+block content
+    if errorMessage
+        p=errorMessage 
+
+    form(method="POST")
+        input(name="username", placeholder="Username", required)
+
+        input(name="password", type="password", placeholder="Password", required)
+        input(name="password2", type="password", placeholder="Confirm Password", required)
+        input(name="email", type="email", placeholder="Email", required)
+        input(type="submit", value="Join")
+        include partials/social-login
+    div.auth-switch
+        span Already have an account?  
+            a(href="/login") Login in now &rarr;

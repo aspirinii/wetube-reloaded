@@ -1,0 +1,18 @@
+extends ../base
+include ../mixins/video
+
+block content
+    div.profile__data
+        img(src="/"+user.avatarUrl).avatar
+        h3=user.username
+    div.video-grid
+        each potato in user.videos
+            +video(potato)
+        else
+            span.empty__message No videos yet  :(
+    br
+    if loggedInUser && loggedInUser._id == user.id
+        a(href="/users/edit") Edit Profile
+    else
+        if !user.socialOnly
+            a(href="/users/change-password") Change Password

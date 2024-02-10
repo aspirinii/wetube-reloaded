@@ -1,0 +1,31 @@
+header
+    a(href="/").header__logo
+        i.fab.fa-youtube
+    //- h1=pageTitle 
+    //- only one value
+    //-  h1 #{pageTitle} 과 같음
+    nav
+        ul
+            li
+                a(href="/search")
+                    i.fas.fa-search
+            if loggedIn
+                li
+                    a(href="/videos/upload") Upload Video
+                li
+                    a(href="/users/edit") Edit Profile
+                li
+                    form(action="/logout", method="post")
+                        button(type="submit").header__btn Logout
+                li
+                    a(href=`/users/${loggedInUser._id}`)
+                        if loggedInUser.avatarUrl
+                            img.header__avatar(src="/"+loggedInUser.avatarUrl)
+                        else
+                            i.fas.fa-user-circle
+            if !loggedIn
+                li
+                    a(href="/join").header__btn Join
+                li
+                    a(href="/login").header__btn Login
+    h2=errorMessage

@@ -1,0 +1,14 @@
+extends base.pug
+
+block content
+    form(method="POST", enctype="multipart/form-data").edit-profile__form
+        //- multipart form data is used to upload files
+        label(for="avatar") Avatar
+        input(type="file", id="avatar", name="avatar", accept="image/*")
+        input(type="text", placeholder="Email", name="email", value=loggedInUser.email required)
+        input(type="text", placeholder="Username", name="username", value=loggedInUser.username, required)
+        input(type="submit", value="Update Profile")
+        hr
+        if(!loggedInUser.socialOnly)
+            div.edit-profile__password
+                a(href="/users/change-password") Change Password &rarr;

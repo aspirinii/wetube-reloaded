@@ -1,0 +1,16 @@
+extends base.pug
+include mixins/video
+
+
+block content
+    form(method="GET").search__form
+        input(type="text", name="keyword", placeholder="Search by keyword")
+        button
+            i.fas.fa-search
+    br
+    if keyword
+        h2 Searching for: #{keyword}
+        each potato in videos
+            +video(potato)
+        else
+            span.empty__message No videos found

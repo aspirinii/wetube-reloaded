@@ -1,0 +1,36 @@
+import express from "express";
+import {
+    getEdit,
+    getUpload,
+    postEdit,
+    postUpload,
+    deleteVideo,
+    watch,
+} from "../controllers/videoController";
+import { protectorMiddleware, videoUpload } from "../middlewares";
+
+const videoRouter = express.Router();
+
+videoRouter.get("test", (req, res) => {
+    res.status(200).send("test");
+});
+videoRouter.get("/:id([0-9a-f]{24})", watch);
+
+videoRouter
+    .route("/:id([0-9a-f]{24})/edit")
+    .all(protectorMiddleware)
+    .get(getEdit)
+    .post(postEdit);
+videoRouter
+    .route("/:id([0-9a-f]{24})/delete")
+    .all(protectorMiddleware)
+    .get(deleteVideo);
+videoRouter
+    .route("/upload")
+    .all(protectorMiddleware)
+    .get(getUpload)
+    .post(videoUpload.single("uploadVideo"), postUpload);
+
+// :id means variable, req.params.id
+
+export default videoRouter;

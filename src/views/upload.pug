@@ -1,0 +1,15 @@
+extends base.pug
+
+block content
+    if errorMessage
+        span.error #{errorMessage}
+    form(method="POST", enctype="multipart/form-data")
+        label(for="uploadVideo") Video File
+        input(type="file", id="uploadVideo", name="uploadVideo", accept="video/*", required)
+        input(required, type="text", name="title", placeholder="Title", maxlength="80")
+        input(required, type="text", name="description", placeholder="Description", maxlength="100")
+        input(type="text", name="hashtags", placeholder="Hashtags, sperated by comma.")
+        input(type="submit", value="Upload Video")
+
+block scripts
+    script(src="/static/js/recoder.js")
