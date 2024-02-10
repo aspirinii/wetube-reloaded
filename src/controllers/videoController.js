@@ -104,16 +104,16 @@ export const postUpload = async (req, res) => {
         file,
     } = req;
     console.log("req.file :", req.file);
-    console.log("file.path :", file.path);
     try {
         const newVideo = await Video.create({
             //Video is model of mongoose
             owner: _id,
-            videoUrl: file.loaction,
+            videoUrl: file.location,
             title: title,
             description: description,
             hashtags: Video.formatHashtags(hashtags),
         });
+        console.log("newVideo Info :", newVideo);
         const user = await User.findById(_id);
         user.videos.push(newVideo._id);
         user.save();
