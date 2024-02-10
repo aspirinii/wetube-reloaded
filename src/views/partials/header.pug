@@ -19,10 +19,12 @@ header
                         button(type="submit").header__btn Logout
                 li
                     a(href=`/users/${loggedInUser._id}`)
-                        if loggedInUser.avatarUrl
+                        if loggedInUser.avatarUrl.includes("github")
                             img.header__avatar(src=loggedInUser.avatarUrl)
+                        else if loggedInUser.avatarUrl.includes("http")
+                            img.header__avatar(src="/"+loggedInUser.avatarUrl)
                         else
-                            i.fas.fa-user-circle
+                            i.fas.fa-user
             if !loggedIn
                 li
                     a(href="/join").header__btn Join
