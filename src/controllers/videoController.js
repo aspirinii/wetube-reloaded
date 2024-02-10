@@ -109,7 +109,7 @@ export const postUpload = async (req, res) => {
         const newVideo = await Video.create({
             //Video is model of mongoose
             owner: _id,
-            videoUrl: file.path,
+            videoUrl: file.loaction,
             title: title,
             description: description,
             hashtags: Video.formatHashtags(hashtags),

@@ -41,7 +41,7 @@ export const postJoin = async (req, res) => {
                 errorMessage: "This username or email is already taken.",
             });
         }
-    
+
         const hashedPassword = await User.hashing(password);
 
         await User.create({
@@ -116,11 +116,10 @@ export const postProfileEdit = async (req, res) => {
     const upadateSessionUser = await User.findByIdAndUpdate(
         _id,
         {
-            avatarUrl: file ? file.path : avatarUrl,
+            avatarUrl: file ? file.location : avatarUrl,
             username,
         },
         { new: true } // return updated object, option of findByIdAndUpdate
-
     );
 
     req.session.user = upadateSessionUser;

@@ -19,10 +19,8 @@ header
                         button(type="submit").header__btn Logout
                 li
                     a(href=`/users/${loggedInUser._id}`)
-                        if loggedInUser.avatarUrl.includes("github")
+                        if loggedInUser.avatarUrl
                             img.header__avatar(src=loggedInUser.avatarUrl)
-                        else if loggedInUser.avatarUrl.includes("http")
-                            img.header__avatar(src="/"+loggedInUser.avatarUrl)
                         else
                             i.fas.fa-user
             if !loggedIn

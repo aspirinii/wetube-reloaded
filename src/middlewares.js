@@ -1,17 +1,19 @@
 import multer from "multer";
 import multerS3 from "multer-s3";
-import aws from "aws-sdk";
+import { S3Client, ListBucketsCommand } from "@aws-sdk/client-s3";
 
-const s3 = new aws.S3({
+const s3 = new S3Client({
     credentials: {
         accessKeyId: process.env.AWS_ID,
         secretAccessKey: process.env.AWS_SECRET,
     },
+    region: "ap-northeast-1",
 });
 
 const multerUploader = multerS3({
     s3: s3,
     bucket: "kpoptube",
+    acl: "public-read",
 });
 
 export const localMiddleware = (req, res, next) => {
@@ -46,10 +48,10 @@ export const avatarUpload = multer({
     limits: {
         fileSize: 3000000,
     },
-    storage : multerUploader
+    storage: multerUploader,
 });
 export const videoUpload = multer({
     dest: "uploads/videos/",
     limits: { fileSize: 10000000 },
-    storage : multerUploader,
+    storage: multerUploader,
 });
