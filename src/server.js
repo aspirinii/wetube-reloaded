@@ -11,20 +11,20 @@ import MongoStore from "connect-mongo";
 import flash from "express-flash";
 
 //live server
-var livereload = require("livereload");
-var connectLiveReload = require("connect-livereload");
+// var livereload = require("livereload");
+// var connectLiveReload = require("connect-livereload");
 
 const app = express(); // app means application server
 const logger = morgan("dev");
 
 // live server
-const liveReloadServer = livereload.createServer();
-liveReloadServer.server.once("connection", () => {
-    setTimeout(() => {
-        liveReloadServer.refresh("/");
-    }, 100);
-});
-app.use(connectLiveReload());
+// const liveReloadServer = livereload.createServer();
+// liveReloadServer.server.once("connection", () => {
+//     setTimeout(() => {
+//         liveReloadServer.refresh("/");
+//     }, 100);
+// });
+// app.use(connectLiveReload());
 
 //check cwd : current working directory
 console.log(process.cwd());
